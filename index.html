@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="./dist/style.css" />
+		<style type="text/css">
+			.btn-green {
+			background-color: #1ab394;
+			color: #fff;
+			border-radius: 3px;
+			}
+			.btn-green:focus,
+			.btn-green:hover {
+			background-color: #18a689;
+			color: #fff;
+			}
+			.panel-footer {
+			padding: 0 15px;
+			border: none;
+			text-align: right;
+			background-color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid"> 
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<h1>ss</h1>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div id="surveyContainer"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="./dist/WifiSurvey.js"></script>
+		<script type="text/javascript">
+			var schema = {
+		        title: "Tell us, what technologies do you use?",
+		        pages: [
+		          {
+		            name: "page1",
+		            questions: [
+		              {
+		                type: "radiogroup",
+		                choices: ["Yes", "No"],
+		                isRequired: true,
+		                name: "frameworkUsing",
+		                title: "Do you use any front-end framework like Bootstrap?"
+		              },
+		              {
+		                type: "checkbox",
+		                choices: ["Bootstrap", "Foundation"],
+		                hasOther: true,
+		                isRequired: true,
+		                name: "framework",
+		                title: "What front-end framework do you use?",
+		                visibleIf: '{frameworkUsing} = "Yes"'
+		              }
+		            ]
+		          },
+		          {
+		            name: "page2",
+		            questions: [
+		              {
+		                type: "radiogroup",
+		                choices: ["Yes", "No"],
+		                isRequired: true,
+		                name: "mvvmUsing",
+		                title: "Do you use any MVVM framework?"
+		              },
+		              {
+		                type: "checkbox",
+		                choices: ["AngularJS", "KnockoutJS", "React"],
+		                hasOther: true,
+		                isRequired: true,
+		                name: "mvvm",
+		                title: "What MVVM framework do you use?",
+		                visibleIf: `{mvvmUsing} = 'Yes'`
+		              }
+		            ]
+		          },
+		          {
+		            name: "page3",
+		            questions: [
+		              {
+		                type: "comment",
+		                name: "about",
+		                title:
+		                  "Please tell us about your main requirements for Survey library"
+		              }
+		            ]
+		          }
+		        ]
+		      };
+			var survey =  new WifiSurvey({"currentState": "survey", "schema": schema});
+			survey.setup()
+		</script>
+	</body>
+</html>
